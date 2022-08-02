@@ -1,25 +1,26 @@
+import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import TodoTasks from "../../Context/TodoTaskContext"
 
 const Task = ({ value }) => {
-    const { tasks, setTasks, isShowEditBtn, setIsShowEditBtn, taskInput, setTaskInput, updateID, setUpdateID } = useContext(TodoTasks);
+    const { tasks, setTasks, setIsShowEditBtn, setTaskInput, setUpdateID } = useContext(TodoTasks);
 
-    //   return 
-    // const todoTasks = useContext(TodoTasks);
-    // const [mapperi,setMapper] = useState(todoTasks);
-    // useEffect(()=>{
-    //     setMapper(todoTasks);
-    // },[todoTasks]);
-    // const flag = useContext(Flag);
-    //Delete Todolist
     const deleteTaskFunc = (id) => {
-        const removeItem = tasks.filter((currentElement) => {
-            return currentElement.id != id;
-        });
-        for (let k = 0; k < removeItem.length; k++) {
-            removeItem[k].id = k + 1;
+
+        async function deleteData() {
+            await axios.delete(`http://localhost:3232/todos/${id}`)
+                .then(function (responce) {
+                    const removeItem = tasks.filter((currentElement) => {
+                        return currentElement.id != id;
+                    });
+                    for (let k = 0; k < removeItem.length; k++) {
+                        removeItem[k].id = k + 1;
+                    }
+                    setTasks(removeItem);
+                })
+                .catch((error) => alert(error));
         }
-        setTasks(removeItem);
+        deleteData();
     }
 
     //Edit TodoList
@@ -40,4 +41,4 @@ const Task = ({ value }) => {
     )
 }
 
-export default Task
+export default Task;
