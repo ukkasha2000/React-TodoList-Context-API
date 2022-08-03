@@ -1,3 +1,25 @@
+A React Todolist Using Context API and use context Hook, having the functioality of Adding new Tasks, Updating Tasks, Delete Tasks and Filtering the tasks, by performing CRUD operatios with REST API.
+
+To run the project first run the json fake server on the following port (http://localhost:3232), using the command json-server --watch src/db.json --port 3232
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
