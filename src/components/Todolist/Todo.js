@@ -27,7 +27,8 @@ const Todo = () => {
       async function postData(){
         await axios.post('http://localhost:3232/todos', { "todo": taskInput })
         .then(function (responce) {
-          setTasks([...tasks, { id: tasks.length + 1, todo: taskInput }]);
+          setTasks([...tasks, { id: tasks[tasks.length - 1].id +1, todo: taskInput }]);
+          console.log(tasks[tasks.length - 1].id +1);
         })
         .catch((error)=>alert(error));
       }
@@ -105,7 +106,7 @@ const Todo = () => {
         </div>
         <div className='todoListDiv'>
           {
-            listToShow.map((currentElement, index) => <Task value={currentElement} key={index} />)
+            listToShow.map((currentElement, index) => <Task value={currentElement} ind={index} key={index} />)
           }
         </div>
       </div>

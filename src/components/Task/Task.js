@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import TodoTasks from "../../Context/TodoTaskContext"
 
-const Task = ({ value }) => {
+const Task = ({ value,ind }) => {
     const { tasks, setTasks, setIsShowEditBtn, setTaskInput, setUpdateID } = useContext(TodoTasks);
 
     const deleteTaskFunc = (id) => {
@@ -13,9 +13,9 @@ const Task = ({ value }) => {
                     const removeItem = tasks.filter((currentElement) => {
                         return currentElement.id != id;
                     });
-                    for (let k = 0; k < removeItem.length; k++) {
-                        removeItem[k].id = k + 1;
-                    }
+                    // for (let k = 0; k < removeItem.length; k++) {
+                    //     removeItem[k].id = k + 1;
+                    // }
                     setTasks(removeItem);
                 })
                 .catch((error) => alert(error));
@@ -31,7 +31,7 @@ const Task = ({ value }) => {
     }
     return (
         <>
-            <h2 className='todoListShow'>Task {value.id} : {value.todo}
+            <h2 className='todoListShow'>Task {ind+1} : {value.todo}
                 <div className='todoButtons'>
                     <button className='edit-task-button' onClick={() => editTaskFunc(value)}><i className="fa fa-pencil"></i></button>
                     <button className='del-task-button' onClick={() => deleteTaskFunc(value.id)}><i className="fa fa-trash"></i></button>
